@@ -1,0 +1,36 @@
+{
+    "build": {
+        "core": "intorobot",
+        "extra_flags": "-DPLATFORM_ID=888007 -DPLATFORM_NAME=w323",
+        "f_cpu": "240000000L",
+        "f_flash": "80000000L",
+        "flash_mode": "dio",
+        "ldscript": "esp32_out.ld",
+        "mcu": "esp32",
+        "variant": "intorobot-w323"
+    },
+    "connectivity": [
+    "wifi",
+    "bluetooth",
+    "ethernet",
+    "can"
+  ],
+    "frameworks": [
+        "intorobot",
+        "arduino",
+        "espidf"
+    ],
+    "name": "IntoRobot-W323",
+    "upload": {
+        "flash_size": "4MB",
+        "maximum_ram_size": 294912,
+        "maximum_size": 1048576,
+        "require_upload_port": true,
+        "resetmethod": "nodemcu",
+        "speed": 921600,
+        "wait_for_upload_port": true,
+        "address": "0x20000"
+    },
+    "url": "http://docs.intorobot.com/zh/hardware/fig/hardware/",
+    "vendor": "IntoRobot"
+}

@@ -1,0 +1,46 @@
+{
+    "name": "intorobot-w323",
+    "title": "Espressif 32",
+    "description": "Espressif Systems is a privately held fabless semiconductor company. They provide wireless communications and Wi-Fi chips which are widely used in mobile devices and the Internet of Things applications.",
+    "url": "https://espressif.com/",
+    "homepage": "http://platformio.org/platforms/espressif32",
+    "license": "Apache-2.0",
+    "engines": {
+        "platformio": "^3.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/intoyuniot/platform-intorobot-w323.git"
+    },
+    "version": "1.0.10",
+    "packageRepositories": [
+        "http://dl.intoyun.com/intoyuniot/packages/manifest.json"
+    ],
+    "frameworks": {
+        "intorobot": {
+            "package": "framework-intorobotespressif32",
+            "script": "builder/frameworks/intorobot.py"
+        }
+    },
+    "packages": {
+        "toolchain-xtensa32": {
+            "type": "toolchain",
+            "version": "~1.50200.0"
+        },
+        "framework-intorobotespressif32": {
+            "type": "framework",
+            "optional": true,
+            "version": "~1.6.7"
+        },
+        "tool-esptoolpy": {
+            "type": "uploader",
+            "version": "~1.20100.0"
+        },
+        "tool-espotapy": {
+            "type": "uploader",
+            "optional": true,
+            "version": "~1.1.0"
+        }
+    }
+}
+
