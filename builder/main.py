@@ -47,7 +47,7 @@ env.Replace(
     CFLAGS=["-std=gnu99"],
 
     CCFLAGS=[
-        "%s" % "-Os" if env.subst("$PIOFRAMEWORK") in ("intorobot", "arduino") else "-Og",
+        "-Os",
         "-g3",
         "-nostdlib",
         "-Wpointer-arith",
@@ -68,6 +68,7 @@ env.Replace(
     CPPDEFINES=[
         "ESP32",
         "ESP_PLATFORM",
+        "ARDUINO_ARCH_ESP32",
         ("F_CPU", "$BOARD_F_CPU"),
         "HAVE_CONFIG_H",
         ("MBEDTLS_CONFIG_FILE", '\\"mbedtls/esp_config.h\\"')
@@ -75,10 +76,13 @@ env.Replace(
 
     LINKFLAGS=[
         "-nostdlib",
-        "-Wl,-static",
+        "-u", "ld_include_panic_highint_hdl",
         "-u", "call_user_start_cpu0",
+        "-Wl,--gc-sections",
+        "-Wl,-static",
         "-Wl,--undefined=uxTopUsedPriority",
-        "-Wl,--gc-sections"
+        "-u", "__cxa_guard_dummy",
+        "-u", "__cxx_fatal_exception"
     ],
 
     #
@@ -146,7 +150,7 @@ env.Append(
     )
 )
 
-if env.subst("$PIOFRAMEWORK") in ("intorobot", "arduino"):
+if env.subst("$PIOFRAMEWORK") in ("intorobot"):
     # Handle uploading via OTA
     ota_port = None
     if env.get("UPLOAD_PORT"):

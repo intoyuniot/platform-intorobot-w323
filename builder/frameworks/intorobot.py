@@ -60,7 +60,8 @@ env.Append(
         "-Wl,-EL",
         "-T", "esp32.common.ld",
         "-T", "esp32.rom.ld",
-        "-T", "esp32.peripherals.ld"
+        "-T", "esp32.peripherals.ld",
+        "-T", "esp32.rom.spiram_incompatible_fns.ld"
     ],
 
     UPLOADERFLAGS=[
@@ -74,7 +75,8 @@ env.Prepend(
     CCFLAGS=[
         "-Wno-error=deprecated-declarations",
         "-Wno-unused-parameter",
-        "-Wno-sign-compare"
+        "-Wno-sign-compare",
+        "-fstack-protector"
     ],
 
     CPPPATH=[
@@ -83,32 +85,41 @@ env.Prepend(
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "IntoRobot_Firmware_Driver", "inc"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "config"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "bluedroid"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "app_trace"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "app_update"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "bt"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "driver"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "esp32"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "esp_adc_cal"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "ethernet"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "fatfs"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "freertos"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "heap"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "jsmn"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "log"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "mdns"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "mbedtls"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "mbedtls_port"),
-        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "vfs"),
-        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "ulp"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "newlib"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "nvs_flash"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "openssl"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "spi_flash"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "sdmmc"),
-        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "openssl"),
-        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "app_update"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "spiffs"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "tcpip_adapter"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "vfs"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "ulp"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "wear_levelling"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "xtensa-debug-module"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "console"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "soc"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "coap"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "wpa_supplicant"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "expat"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "json"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "nghttp"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "lwip"),
+        join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "MCU", "ESP32-Arduino", "sdk", "include", "bootloader_support"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "platform", "shared", "inc"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "services", "inc"),
         join(FRAMEWORK_DIR, "cores", board.get("build.core"), "system", "inc"),
@@ -125,11 +136,12 @@ env.Prepend(
     ],
     LIBS=[
         "wiring", "wiring_ex", "hal", "platform", "services", "communication", "system",
-        "gcc", "stdc++", "app_update", "bootloader_support", "bt", "btdm_app", "c", "c_nano", "coap", "coexist",
-        "core", "cxx", "driver", "esp32", "ethernet", "expat", "fatfs", "freertos", "halhal", "json", "log",
-        "lwip", "m", "mbedtls", "mdns", "micro-ecc", "net80211", "newlib", "nghttp", "nvs_flash", "openssl",
-        "phy", "pp", "rtc","rtc_clk", "sdmmc", "smartconfig", "spi_flash", "tcpip_adapter", "ulp", "vfs",
-        "wpa", "wpa2", "wpa_supplicant", "wps", "xtensa-debug-module"
+        "gcc", "openssl", "btdm_app", "fatfs", "wps", "coexist", "wear_levelling", "halhal", "newlib", "driver",
+        "bootloader_support", "pp", "smartconfig", "jsmn", "wpa", "ethernet", "phy", "app_trace", "console", "ulp",
+        "wpa_supplicant", "freertos", "bt", "micro-ecc", "cxx", "xtensa-debug-module", "mdns", "vfs", "soc", "core",
+        "sdmmc", "coap", "tcpip_adapter", "c_nano", "rtc", "spi_flash", "wpa2", "esp32", "app_update", "nghttp",
+        "spiffs", "espnow", "nvs_flash", "esp_adc_cal", "log", "expat", "m", "c", "heap", "mbedtls", "lwip",
+        "net80211", "pthread", "json", "stdc++"
     ],
 )
 
