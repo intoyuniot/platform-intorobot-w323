@@ -135,7 +135,7 @@ env.Prepend(
         join(FRAMEWORK_DIR, "variants", board.get("build.variant"), "build", "linker")
     ],
     LIBS=[
-        "wiring", "wiring_ex", "hal", "platform", "services", "communication", "system",
+        "wiring", "wiring_ex", "hal", "system", "services", "communication", "platform",
         "gcc", "openssl", "btdm_app", "fatfs", "wps", "coexist", "wear_levelling", "halhal", "newlib", "driver",
         "bootloader_support", "pp", "smartconfig", "jsmn", "wpa", "ethernet", "phy", "app_trace", "console", "ulp",
         "wpa_supplicant", "freertos", "bt", "micro-ecc", "cxx", "xtensa-debug-module", "mdns", "vfs", "soc", "core",
