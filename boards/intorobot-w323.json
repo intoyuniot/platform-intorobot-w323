@@ -20,7 +20,7 @@
         "arduino",
         "espidf"
     ],
-    "name": "IntoRobot-W323",
+    "name": "IntoRobot W32/W33(ESP32 Module)",
     "upload": {
         "flash_size": "4MB",
         "maximum_ram_size": 294912,
